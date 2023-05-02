@@ -85,4 +85,4 @@ jobs:
         with:
           name: artifacts
           path: |
-            dist
+            bin/clang-linux-arm/debug/cxxstd-14-iso/link-static/target-os-android/*
