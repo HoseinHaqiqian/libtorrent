@@ -85,4 +85,4 @@ jobs:
         with:
           name: artifacts
           path: |
-            bin/clang-linux-arm/debug/cxxstd-14-iso/link-static/target-os-android/*
+            bin/clang-linux-arm/debug/cxxstd-14-iso/target-os-android/threading-multi/visibility-hidden/*
