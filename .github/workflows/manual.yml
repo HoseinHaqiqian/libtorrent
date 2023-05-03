@@ -77,7 +77,7 @@ jobs:
           echo "boost-build ${BOOST_ROOT}/tools/build/src ;" > boost-build.jam
           echo "using clang-linux : arm : ${ANDROID_TOOLCHAIN}/bin/arm-linux-androideabi-clang++
           <cxxflags>-fPIC
-          <cxxflags>-march=armv7-a
+          <cxxflags>-march=native
           <cxxflags>-mfpu=neon ;" >>~/user-config.jam;
           ${BOOST_ROOT}/b2 warnings-as-errors=on cxxstd=14 toolset=clang-linux-arm target-os=android link=shared crypto=openssl openssl-include=${OPENSSL_ROOT}/include openssl-lib=${OPENSSL_ROOT}/lib
       - name: store artifact
