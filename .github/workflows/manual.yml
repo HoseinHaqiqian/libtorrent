@@ -53,7 +53,7 @@ jobs:
           wget -nv -O android-ndk.zip https://dl.google.com/android/repository/android-ndk-${NDK_VERSION}-linux-x86_64.zip
           unzip -qq android-ndk.zip
           export NDK=${PWD}/android-ndk-${NDK_VERSION}
-          ${NDK}/build/tools/make_standalone_toolchain.py --arch arm --api 19 --stl libc++ --install-dir android-toolchain
+          ${NDK}/build/tools/make_standalone_toolchain.py --arch arm64 --api 19 --stl libc++ --install-dir android-toolchain
 
       - name: install openssl
         run: |
@@ -75,11 +75,11 @@ jobs:
           export BOOST_ROOT=${PWD}/boost
           export OPENSSL_ROOT=${PWD}/openssl
           echo "boost-build ${BOOST_ROOT}/tools/build/src ;" > boost-build.jam
-          echo "using clang-linux : arm : ${ANDROID_TOOLCHAIN}/bin/arm-linux-androideabi-clang++
+          echo "using clang-linux : arm64 : ${ANDROID_TOOLCHAIN}/bin/aarch64-linux-android21-clang++
           <cxxflags>-fPIC
           <cxxflags>-march=native
           <cxxflags>-mfpu=neon ;" >>~/user-config.jam;
-          ${BOOST_ROOT}/b2 warnings-as-errors=on cxxstd=14 toolset=clang-linux-arm target-os=android link=shared crypto=openssl openssl-include=${OPENSSL_ROOT}/include openssl-lib=${OPENSSL_ROOT}/lib
+          ${BOOST_ROOT}/b2 warnings-as-errors=on cxxstd=14 toolset=clang-linux-arm64 target-os=android link=shared crypto=openssl openssl-include=${OPENSSL_ROOT}/include openssl-lib=${OPENSSL_ROOT}/lib
       - name: store artifact
         uses: actions/upload-artifact@v3
         with:
